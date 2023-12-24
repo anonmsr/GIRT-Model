@@ -13,6 +13,12 @@
 The repository introduces **GIRT-Model**, an open-source assistant language model that automatically generates IRTs. It creates IRTs based on the developer’s
 instructions regarding the structure and necessary fields.
 
+## Links
+
+**Model:** https://huggingface.co/anonmsr/girt-t5-base
+**Dataset:** https://huggingface.co/datasets/anonmsr/girt-instruct
+**Space:** https://huggingface.co/spaces/anonmsr/girt-space
+
 ## How to use 
 ```python
 
