@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://huggingface.co/spaces/anonmsr/girt-space/raw/main/assets/logo.svg" alt="GlotLID" width="30%" />
+<img src="./assets/logo.svg" alt="GlotLID" width="30%" />
 </p>
 <p align="center">
 <a href="https://huggingface.co/anonmsr/girt-t5-base"><img alt="HuggingFace Model" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-8A2BE2"></a>
@@ -15,11 +15,12 @@ instructions regarding the structure and necessary fields.
 
 ## Links
 
-**Model:** https://huggingface.co/anonmsr/girt-t5-base
-**Dataset:** https://huggingface.co/datasets/anonmsr/girt-instruct
-**Space:** https://huggingface.co/spaces/anonmsr/girt-space
+- **Model:** https://huggingface.co/anonmsr/girt-t5-base
+- **Dataset:** https://huggingface.co/datasets/anonmsr/girt-instruct
+- **Space:** https://huggingface.co/spaces/anonmsr/girt-space
 
-## How to use 
+
+## How to load model (local)
 ```python
 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -68,14 +69,8 @@ result = compute(prompt, top_p = 0.92, top_k=0, do_sample=True, max_length=300, 
 ```
 ## Dataset
 
-### GIRT-Instruct Corpus
-
 A dataset in the format of pairs of instructions and corresponding outputs. GIRT-Instruct is constructed based on [GIRT-Data](https://arxiv.org/abs/2303.09236), a dataset of IRTs. 
-We use both GIRT-Data metadata and the [Zephyr-7B-Beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) language model to generate the instructions
-
-This dataset is used to train the [GIRT-Model](https://huggingface.co/anonmsr/girt-t5-base) model.
-
-### Type 
+We use both GIRT-Data metadata and the [Zephyr-7B-Beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) language model to generate the instructions. This dataset is used to train the GIRT-Model.
 
 We have 4 different types in GIRT-Instruct. These types include:
 
@@ -84,10 +79,28 @@ We have 4 different types in GIRT-Instruct. These types include:
 - **default+summary:**  This type includes instructions with the GIRT-Data metadata and the field of summary.
 - **default+summary+mask:** This type includes instructions with the GIRT-Data metadata and the field of summary. Also, two fields of information in each instruction are randomly masked.
 
-### Usage 
+### How to load dataset 
 
 ```python
 from datasets import load_dataset
 dataset = load_dataset('anonmsr/girt-instruct', split='train')
 print(dataset['train'][0]) # First row of train
 ```
+
+
+# UI (online)
+
+This UI is designed to interact with GIRT-Model, it is also accessible in huggingface: https://huggingface.co/spaces/anonmsr/girt-space
+1. IRT input examples
+2. metadata fields of IRT inputs
+3. summary field of IRT inputs
+4. model config
+5. generated instruction based on the IRT inputs
+6. generated IRT
+
+<p align="center">
+<img src="./assets/ui.png" alt="GlotLID" width="50%" />
+</p>
+
+
+
