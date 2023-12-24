@@ -60,3 +60,28 @@ def compute(sample, top_p, top_k, do_sample, max_length, min_length):
 prompt = "YOUR INPUT INSTRUCTION"
 result = compute(prompt, top_p = 0.92, top_k=0, do_sample=True, max_length=300, min_length=30)
 ```
+## Dataset
+
+### GIRT-Instruct Corpus
+
+A dataset in the format of pairs of instructions and corresponding outputs. GIRT-Instruct is constructed based on [GIRT-Data](https://arxiv.org/abs/2303.09236), a dataset of IRTs. 
+We use both GIRT-Data metadata and the [Zephyr-7B-Beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta) language model to generate the instructions
+
+This dataset is used to train the [GIRT-Model](https://huggingface.co/anonmsr/girt-t5-base) model.
+
+### Type 
+
+We have 4 different types in GIRT-Instruct. These types include:
+
+- **default:** This type includes instructions with the GIRT-Data metadata.
+- **default+mask:** This type includes instructions with the GIRT-Data metadata, wherein two fields of information in each instruction are randomly masked.
+- **default+summary:**  This type includes instructions with the GIRT-Data metadata and the field of summary.
+- **default+summary+mask:** This type includes instructions with the GIRT-Data metadata and the field of summary. Also, two fields of information in each instruction are randomly masked.
+
+### Usage 
+
+```python
+from datasets import load_dataset
+dataset = load_dataset('anonmsr/girt-instruct', split='train')
+print(dataset['train'][0]) # First row of train
+```
