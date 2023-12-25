@@ -1,4 +1,3 @@
-
 <p align="center">
 <img src="./assets/logo.svg" alt="GlotLID" width="30%" />
 </p>
@@ -67,6 +66,7 @@ def compute(sample, top_p, top_k, do_sample, max_length, min_length):
 prompt = "YOUR INPUT INSTRUCTION"
 result = compute(prompt, top_p = 0.92, top_k=0, do_sample=True, max_length=300, min_length=30)
 ```
+
 ## Dataset
 
 A dataset in the format of pairs of instructions and corresponding outputs. GIRT-Instruct is constructed based on [GIRT-Data](https://arxiv.org/abs/2303.09236), a dataset of IRTs. 
@@ -87,8 +87,12 @@ dataset = load_dataset('anonmsr/girt-instruct', split='train')
 print(dataset['train'][0]) # First row of train
 ```
 
+## Code
+The code for fine-tuning the GIRT-Model and evaluation in a zero-shot setting is available [here](./train-evaluate-girt.ipynb). It downloads the GIRT-Instruct and fine-tunes the t5-base model.
 
-# UI (online)
+We also provide the [code](summary_gen.ipynb) and prompts used for the Zephyr model to generate summaries of instructions.
+
+## UI (online)
 
 This UI is designed to interact with GIRT-Model, it is also accessible in huggingface: https://huggingface.co/spaces/anonmsr/girt-space
 1. IRT input examples
